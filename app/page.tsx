@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
 import { FaHeart, FaHome, FaPlane, FaRing, FaBaby, FaMapMarkerAlt } from 'react-icons/fa';
@@ -158,30 +158,39 @@ const backgroundColors = [
 export default function Page() {
   const [selectedEvent, setSelectedEvent] = useState<number | null>(null);
   const [activeSection, setActiveSection] = useState(0);
+  const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const scrollToSection = (index: number) => {
-    const sections = document.querySelectorAll(`.${styles.timelineElement}`);
-    if (sections[index]) {
-      sections[index].scrollIntoView({ behavior: 'smooth' });
+    if (sectionRefs.current[index]) {
+      sectionRefs.current[index]?.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = document.querySelectorAll(`.${styles.timelineElement}`);
-      const scrollPosition = window.scrollY + window.innerHeight / 3;
+    const observerOptions = {
+      root: null,
+      rootMargin: '-40% 0px -40% 0px',
+      threshold: 0.1
+    };
 
-      sections.forEach((section, index) => {
-        const rect = section.getBoundingClientRect();
-        const absoluteTop = window.scrollY + rect.top;
-        if (scrollPosition >= absoluteTop) {
-          setActiveSection(index);
+    const observerCallback: IntersectionObserverCallback = (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const index = sectionRefs.current.findIndex(ref => ref === entry.target);
+          if (index !== -1) {
+            setActiveSection(index);
+          }
         }
       });
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    sectionRefs.current.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -199,18 +208,22 @@ export default function Page() {
       </nav>
 
       <div className={styles.backgroundContainer}>
-        {backgroundColors.map((color, index) => (
+        {timelineEvents.map((_, index) => (
           <div
             key={index}
             className={`${styles.backgroundSection} ${index === activeSection ? styles.active : ''}`}
-            style={{ backgroundColor: color }}
           />
         ))}
       </div>
 
-      <div className={`${styles.intro} ${styles.timelineElement}`}>
-        <h1>[Your Names]</h1>
-        <h2>Together since [Year]</h2>
+      <div 
+        className={`${styles.intro} ${styles.timelineElement}`}
+        ref={(el) => {
+          sectionRefs.current[0] = el;
+        }}
+      >
+        <h1>Ruth & John</h1>
+        <h2>Together since 2014</h2>
         <div className={styles.couplePhotos}>
           <div className={styles.photo}>
             <Image
@@ -234,7 +247,13 @@ export default function Page() {
       <div className={styles.timelineWrapper}>
         <VerticalTimeline>
           {timelineEvents.map((event, index) => (
-            <div key={index} className={styles.timelineElement}>
+            <div 
+              key={index} 
+              className={styles.timelineElement}
+              ref={(el) => {
+                sectionRefs.current[index + 1] = el;
+              }}
+            >
               <VerticalTimelineElement
                 className="vertical-timeline-element--work"
                 date={event.date}

@@ -21,6 +21,7 @@
     "react-dom": "latest",
     "react-icons": "^5.5.0",
     "react-vertical-timeline-component": "^3.5.3",
+    "react-waypoint": "^10.3.0",
     "typescript": "latest"
   }
 }
