@@ -17,11 +17,10 @@
     "@types/react-vertical-timeline-component": "^3.3.6",
     "next": "latest",
     "prop-types": "^15.8.1",
-    "react": "latest",
-    "react-dom": "latest",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-icons": "^5.5.0",
     "react-vertical-timeline-component": "^3.5.3",
-    "react-waypoint": "^10.3.0",
     "typescript": "latest"
   }
 }
