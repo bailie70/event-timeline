@@ -1,0 +1,13 @@
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - "3001:3000"  # Map container's 3000 to host's 3001
+    volumes:
+      - ./components:/app/components  # Mount components directory
+      - ./app:/app/app  # Mount app directory
+      - ./public:/app/public  # Mount public directory for images
+    environment:
+      - NODE_ENV=development
+    command: npm run dev  # Use development server instead of production for hot reloading 

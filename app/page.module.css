@@ -1,0 +1,221 @@
+.main {
+  min-height: 100vh;
+  background: #f5f5f5;
+  padding: 2rem 1rem;
+  position: relative;
+}
+
+.backgroundContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+.backgroundSection {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.backgroundSection.active {
+  opacity: 1;
+}
+
+.timelineElement {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.intro {
+  text-align: center;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 2rem auto;
+  max-width: 800px;
+}
+
+.intro h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+  color: #2c3e50;
+}
+
+.intro h2 {
+  font-size: 1.5rem;
+  color: #7f8c8d;
+  margin-bottom: 2rem;
+}
+
+.couplePhotos {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.photo {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.photo:hover {
+  transform: scale(1.05);
+}
+
+.timelineWrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.timelineWrapper :global(.vertical-timeline::before) {
+  background: rgba(0, 0, 0, 0.1);
+  width: 3px;
+}
+
+.timelineWrapper :global(.vertical-timeline-element) {
+  margin: 2rem 0;
+}
+
+.timelineWrapper :global(.vertical-timeline-element-content) {
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.1);
+  padding: 2rem !important;
+  transition: all 0.3s ease !important;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  margin-left: 0.25rem !important;
+  margin-top: 3rem !important;
+  position: relative;
+}
+
+.timelineWrapper :global(.vertical-timeline-element-content:hover) {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.timelineWrapper :global(.vertical-timeline-element-date) {
+  font-size: 1.2rem !important;
+  color: #34495e !important;
+  font-weight: 600 !important;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.timelineWrapper :global(.vertical-timeline-element-title) {
+  font-size: 1.5rem !important;
+  margin-bottom: 3rem !important;
+  color: #2c3e50 !important;
+  padding-left: 4px;
+  position: absolute;
+  top: -7rem;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.timelineWrapper :global(.vertical-timeline-element-icon) {
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1), inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
+  width: 60px;
+  height: 60px;
+  top: -1rem !important;
+  left: 50% !important;
+  transform: translateX(-50%);
+}
+
+.timelineWrapper :global(.vertical-timeline-element-content-arrow) {
+  display: none !important;
+}
+
+.timelineWrapper :global(.vertical-timeline-element p) {
+  padding-left: 4px;
+}
+
+.navigation {
+  position: fixed;
+  left: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.navItem {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #cbd5e1;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.navItem:hover,
+.navItem.active {
+  background: #3b82f6;
+  transform: scale(1.2);
+}
+
+.navTooltip {
+  position: absolute;
+  left: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  color: #1a202c;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navItem:hover .navTooltip {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .intro h1 {
+    font-size: 2rem;
+  }
+
+  .intro h2 {
+    font-size: 1.2rem;
+  }
+
+  .couplePhotos {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .timelineWrapper :global(.vertical-timeline-element-date) {
+    font-size: 1rem !important;
+    margin-top: 1rem !important;
+  }
+
+  .timelineWrapper :global(.vertical-timeline-element-content) {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+} 

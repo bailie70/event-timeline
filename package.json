@@ -1,0 +1,26 @@
+{
+  "name": "romantic-timeline",
+  "version": "1.0.0",
+  "description": "A beautiful timeline to showcase your journey together",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "@types/react-vertical-timeline-component": "^3.3.6",
+    "next": "latest",
+    "prop-types": "^15.8.1",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-icons": "^5.5.0",
+    "react-vertical-timeline-component": "^3.5.3",
+    "typescript": "latest"
+  }
+}
