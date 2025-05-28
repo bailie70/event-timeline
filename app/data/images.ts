@@ -12,27 +12,49 @@ interface ProfileImage {
 }
 
 export const eventImages: EventImage[] = [
-  // Example format - replace with your actual images
   {
-    id: 'first-meeting',
-    src: '/images/events/first-meeting.jpg', // You'll add your images here
-    alt: 'Our First Meeting',
-    caption: 'Where it all began'
+    id: 'first-trip-ni-2',
+    src: '/images/events/section1_first_trip_NI_2.JPG',
+    alt: 'Northern Ireland Trip 2',
+    caption: 'Adventures in Northern Ireland'
   },
-  // Add more events here
+  {
+    id: 'first-trip-ni-1',
+    src: '/images/events/section1_first_trip_NI_1.JPG',
+    alt: 'Northern Ireland Trip 1',
+    caption: 'More memories from Northern Ireland'
+  },
+  {
+    id: 'first-trip-ni',
+    src: '/images/events/section1_first_trip_NI.JPG',
+    alt: 'Northern Ireland Trip',
+    caption: 'Our journey through Northern Ireland'
+  },
+  {
+    id: 'section1-main',
+    src: '/images/events/section1.JPG',
+    alt: 'The Beginning',
+    caption: 'Where our story began'
+  },
+  {
+    id: 'first-trip',
+    src: '/images/events/section1_first_trip.JPG',
+    alt: 'Our First Trip',
+    caption: 'Our first adventure together'
+  },
+  {
+    id: 'first-mountain',
+    src: '/images/events/section1_first_mountain.JPG',
+    alt: 'First Mountain Together',
+    caption: 'Conquering heights together'
+  }
 ];
 
 export const profileImages: ProfileImage[] = [
-  // Example format - replace with your actual images
   {
-    id: 'profile-1',
-    src: '/images/profile/profile1.jpg', // You'll add your images here
-    alt: 'Partner 1'
-  },
-  {
-    id: 'profile-2',
-    src: '/images/profile/profile2.jpg', // You'll add your images here
-    alt: 'Partner 2'
+    id: 'couple-profile',
+    src: '/images/profile/John_Ruth.JPG',
+    alt: 'John and Ruth'
   }
 ];
 

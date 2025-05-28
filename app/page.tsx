@@ -7,6 +7,7 @@ import { FaHeart, FaHome, FaPlane, FaRing, FaBaby, FaMapMarkerAlt } from 'react-
 import PolaroidGallery from '@/components/PolaroidGallery';
 import styles from './page.module.css';
 import Image from 'next/image';
+import { eventImages, profileImages } from './data/images';
 
 const timelineEvents = [
   {
@@ -16,10 +17,12 @@ const timelineEvents = [
     icon: <FaHeart />,
     iconBackground: '#e74c3c',
     photos: [
-      { url: 'https://picsum.photos/400/400?random=1', caption: 'First Photo Together' },
-      { url: 'https://picsum.photos/400/400?random=2', caption: 'Early Days' },
-      { url: 'https://picsum.photos/400/400?random=3', caption: 'Getting to Know Each Other' },
-      { url: 'https://picsum.photos/400/400?random=4', caption: 'Making Memories' },
+      { url: '/images/events/section1_first_trip_NI_2.JPG', caption: 'Adventures in Northern Ireland' },
+      { url: '/images/events/section1_first_trip_NI_1.JPG', caption: 'More memories from Northern Ireland' },
+      { url: '/images/events/section1_first_trip_NI.JPG', caption: 'Our journey through Northern Ireland' },
+      { url: '/images/events/section1.JPG', caption: 'Where our story began' },
+      { url: '/images/events/section1_first_trip.JPG', caption: 'Our first adventure together' },
+      { url: '/images/events/section1_first_mountain.JPG', caption: 'Conquering heights together' },
     ],
   },
   {
@@ -222,24 +225,21 @@ export default function Page() {
           sectionRefs.current[0] = el;
         }}
       >
-        <h1>Ruth & John</h1>
         <div className={styles.couplePhotos}>
           <div className={styles.photo}>
             <Image
-              src="https://picsum.photos/400/400?random=couple1"
-              alt="Partner 1"
-              width={200}
-              height={200}
+              src="/images/profile/John_Ruth.JPG"
+              alt="John and Ruth"
+              width={300}
+              height={300}
+              style={{ objectFit: 'cover' }}
+              priority
             />
           </div>
-          <div className={styles.photo}>
-            <Image
-              src="https://picsum.photos/400/400?random=couple2"
-              alt="Partner 2"
-              width={200}
-              height={200}
-            />
-          </div>
+        </div>
+        <div className={styles.introText}>
+          <h1>Ruth & John</h1>
+          <h2>Our Journey Together</h2>
         </div>
       </div>
       
