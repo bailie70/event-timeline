@@ -223,7 +223,6 @@ export default function Page() {
         }}
       >
         <h1>Ruth & John</h1>
-        <h2>Together since 2014</h2>
         <div className={styles.couplePhotos}>
           <div className={styles.photo}>
             <Image
