@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import styles from './PolaroidGallery.module.css';
+import ImageModal from './ImageModal';
 
 interface Photo {
   url: string;
@@ -17,8 +18,17 @@ interface PolaroidGalleryProps {
 
 export default function PolaroidGallery({ photos, isOpen, onClose }: PolaroidGalleryProps) {
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [showModal, setShowModal] = useState(false);
 
   if (!isOpen) return null;
+
+  const handlePrevious = () => {
+    setSelectedIndex((prev) => (prev > 0 ? prev - 1 : prev));
+  };
+
+  const handleNext = () => {
+    setSelectedIndex((prev) => (prev < photos.length - 1 ? prev + 1 : prev));
+  };
 
   return (
     <div className={styles.overlay} onClick={onClose}>
@@ -29,7 +39,10 @@ export default function PolaroidGallery({ photos, isOpen, onClose }: PolaroidGal
             <div 
               key={index}
               className={`${styles.polaroid} ${index === selectedIndex ? styles.selected : ''}`}
-              onClick={() => setSelectedIndex(index)}
+              onClick={() => {
+                setSelectedIndex(index);
+                setShowModal(true);
+              }}
               style={{
                 transform: `rotate(${Math.random() * 20 - 10}deg)`,
                 animationDelay: `${index * 0.1}s`
@@ -41,6 +54,7 @@ export default function PolaroidGallery({ photos, isOpen, onClose }: PolaroidGal
                   alt={photo.caption}
                   fill
                   style={{ objectFit: 'cover' }}
+                  sizes="(max-width: 768px) 140px, 200px"
                 />
               </div>
               <div className={styles.caption}>{photo.caption}</div>
@@ -48,6 +62,17 @@ export default function PolaroidGallery({ photos, isOpen, onClose }: PolaroidGal
           ))}
         </div>
       </div>
+
+      {showModal && (
+        <ImageModal
+          photo={photos[selectedIndex]}
+          onClose={() => setShowModal(false)}
+          onNext={handleNext}
+          onPrevious={handlePrevious}
+          isFirst={selectedIndex === 0}
+          isLast={selectedIndex === photos.length - 1}
+        />
+      )}
     </div>
   );
 } 
